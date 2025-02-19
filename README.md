@@ -30,15 +30,11 @@ perl extract.pl
 
 なお、$g$ 値および $\theta_{\mu m}$ は以下の式によって計算されます。
 
-$$
-g = \frac{4 |\boldsymbol{\mu}| |\boldsymbol{m}| \cos \theta_{\mu m}}{|\boldsymbol{\mu}|^2 + |\boldsymbol{m}|^2}
-$$
+$$g = \frac{4 |\boldsymbol{\mu}| |\boldsymbol{m}| \cos \theta_{\mu m}}{|\boldsymbol{\mu}|^2 + |\boldsymbol{m}|^2}$$
 
-$$
-\theta_{\mu m} = \mathrm{Arccos} ~ \left( \frac{\mu_x m_x + \mu_y m_y + \mu_z m_z}{|\boldsymbol{\mu}| |\boldsymbol{m}|} \right)
-$$
+$$\theta_{\mu m} = \mathrm{Arccos} ~ \left( \frac{\mu_x m_x + \mu_y m_y + \mu_z m_z}{|\boldsymbol{\mu}| |\boldsymbol{m}|} \right)$$
 
-ただし $\boldsymbol{\mu} = (\mu_x, \mu_y, \mu_z)$、$\boldsymbol{m} = (m_x, m_y, m_z)$ は電気遷移双極子モーメントベクトル、および磁気遷移双極子モーメントベクトルで、各成分は TD-DFT 計算による出力値です。
+ただし $\boldsymbol{\mu} = (\mu_x, \mu_y, \mu_z)$ および $\boldsymbol{m} = (m_x, m_y, m_z)$ は電気遷移双極子モーメントベクトル、および磁気遷移双極子モーメントベクトルで、各成分は TD-DFT 計算による出力値です。
 
 3. `Opt` オプションによる構造最適化（`Opt=ModRedundant` オプションによるスキャン計算を含む）の計算結果ファイル（`.out` または `.log`）を読み込み、Scan Coordinate ごとの最適化された座標データを `.xyz` 形式で出力します。
 
