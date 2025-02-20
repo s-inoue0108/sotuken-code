@@ -26,9 +26,9 @@ perl extract.pl
 
 1. `Opt` オプションによる構造最適化（`Opt=ModRedundant` オプションによるスキャン計算を含む）の計算結果ファイル（`.out` または `.log`）を読み込み、Scan Coordinate ごとの最適化された座標データについて TD-DFT 計算ファイルを生成します。
 
-2. `TD` オプション、または `TD Opt` オプションによる TD-DFT 計算（`Opt=ModRedundant` オプションによるスキャン計算を含む）の結果ファイル（`.out` または `.log`）を読み込み、Scan Coordinate、および励起状態ごとの振動子強度・旋光強度・$g$ 値および電気遷移双極子モーメントと磁気遷移双極子モーメントがなす角度 $\theta_{\mu m}$ を記載した `.txt` ファイルを出力します。
+2. `TD` オプション、または `TD Opt` オプションによる TD-DFT 計算（`Opt=ModRedundant` オプションによるスキャン計算を含む）の結果ファイル（`.out` または `.log`）を読み込み、Scan Coordinate、および励起状態ごとの振動子強度・旋光強度・*g*値および電気遷移双極子モーメントと磁気遷移双極子モーメントがなす角度 $\theta_{\mu m}$ を記載した `.txt` ファイルを出力します。
 
-なお、$g$ 値および $\theta_{\mu m}$ は以下の式によって計算されます。
+なお、*g*値および $\theta_{\mu m}$ は以下の式によって計算されます。
 
 $$g = \frac{4 |\boldsymbol{\mu}| |\boldsymbol{m}| \cos \theta_{\mu m}}{|\boldsymbol{\mu}|^2 + |\boldsymbol{m}|^2}$$
 
