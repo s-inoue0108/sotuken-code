@@ -93,7 +93,7 @@ python scanplot.py [-h|--help] [--state STATE] [--save] [--y1 {rot,osc,gfac,angl
 [`lactic_acid.out`](/example/ground_state/lactic_acid.out) は構造最適化計算の結果ファイルです。これをもとに、二面角ごとの安定構造を入力にもつ TD-DFT インプットファイルを生成します。
 
 ```
-$ extract
+$ perl extract.pl
 -------------------------------------------------------------------------------------
 This is the Gaussian output processor for TD-DFT calculations.
 (Press 'Ctrl + C' to exit)
@@ -125,7 +125,7 @@ This is the Gaussian output processor for TD-DFT calculations.
 [`lactic_acid_tddft_outs/`](/example/ground_state/lactic_acid_tddft_outs/) は二面角ごとの TD-DFT 計算の結果ファイル（`lactic_acid.***.tddft.out` が詰まったディレクトリです。
 
 ```
-$ extract
+$ perl extract.pl
 -------------------------------------------------------------------------------------
 This is the Gaussian output processor for TD-DFT calculations.
 (Press 'Ctrl + C' to exit)
@@ -171,3 +171,6 @@ python3 enerplot.py /path/to/lactic_acid_tot_ener.txt
 python3 scanplot.py /path/to/lactic_acid_tddft_outs.plot.txt
 ```
 
+### 励起状態
+
+`example/excited_state/` ディレクトリに一連のファイルとサブディレクトリがあります。
