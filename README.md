@@ -24,9 +24,9 @@ perl extract.pl
 
 スクリプト起動後、出力フォーマットは以下から選択できます。
 
-1. `Opt` オプションによる構造最適化（`Opt=ModRedundant` オプションによるスキャン計算を含む）の計算結果ファイル（`.out` または `.log`）を読み込み、Scan Coordinate ごとの最適化された座標データについて TD-DFT 計算ファイルを生成します。
+1. `opt` オプションによる構造最適化（`opt=modredundant` オプションによるスキャン計算を含む）の計算結果ファイル（`.out` または `.log`）を読み込み、Scan Coordinate ごとの最適化された座標データについて TD-DFT 計算ファイルを生成します。
 
-2. `TD` オプション、または `TD Opt` オプションによる TD-DFT 計算（`Opt=ModRedundant` オプションによるスキャン計算を含む）の結果ファイル（`.out` または `.log`）を読み込み、Scan Coordinate、および励起状態ごとの振動子強度・旋光強度・*g*値および電気遷移双極子モーメントと磁気遷移双極子モーメントがなす角度 $\theta_{\mu m}$ を記載した `.txt` ファイルを出力します。
+2. `td` オプション、または `td opt` オプションによる TD-DFT 計算（`opt=modredundant` オプションによるスキャン計算を含む）の結果ファイル（`.out` または `.log`）を読み込み、Scan Coordinate、および励起状態ごとの振動子強度・旋光強度・*g*値および電気遷移双極子モーメントと磁気遷移双極子モーメントがなす角度 $\theta_{\mu m}$ を記載した `.txt` ファイルを出力します。
 
 なお、*g*値および $\theta_{\mu m}$ は以下の式によって計算されます。
 
@@ -36,7 +36,7 @@ $$\theta_{\mu m} = \mathrm{Arccos} ~ \left( \frac{\mu_x m_x + \mu_y m_y + \mu_z 
 
 ただし $\boldsymbol{\mu} = (\mu_x, \mu_y, \mu_z)$ および $\boldsymbol{m} = (m_x, m_y, m_z)$ は電気遷移双極子モーメントベクトル、および磁気遷移双極子モーメントベクトルで、各成分は TD-DFT 計算による出力値です。
 
-3. `Opt` オプションによる構造最適化（`Opt=ModRedundant` オプションによるスキャン計算を含む）の計算結果ファイル（`.out` または `.log`）を読み込み、Scan Coordinate ごとの最適化された座標データを `.xyz` 形式で出力します。
+3. `opt` オプションによる構造最適化（`opt=modredundant` オプションによるスキャン計算を含む）の計算結果ファイル（`.out` または `.log`）を読み込み、Scan Coordinate ごとの最適化された座標データを `.xyz` 形式で出力します。
 
 ### `enerplot.py`
 
@@ -78,7 +78,7 @@ python scanplot.py [-h|--help] [--state STATE] [--save] [--y1 {rot,osc,gfac,angl
 
 ## 実行例
 
-乳酸（Lactic acid）による計算例を示します。
+L-フェニルアラニン（L-Phenylalanine）による計算例を示します。
 
 ### 基底状態
 
@@ -86,11 +86,11 @@ python scanplot.py [-h|--help] [--state STATE] [--save] [--y1 {rot,osc,gfac,angl
 
 **1. 構造最適化計算**
 
-[`lactic_acid.com`](/example/ground_state/lactic_acid.com) は初期構造ファイルです。`opt=modredundant` オプションにより、*メチル基-不斉中心炭素-カルボキシル基* を通る二面角を回転させながら構造最適化を繰り返します。
+[`phe.com`](/example/ground_state/phe.com) は初期構造ファイルです。`opt=modredundant` オプションにより、ベンジル位の二面角を回転させながら構造最適化を繰り返します。
 
 **2. TD-DFT 計算ファイルの生成**
 
-[`lactic_acid.out`](/example/ground_state/lactic_acid.out) は構造最適化計算の結果ファイルです。これをもとに、二面角ごとの安定構造を入力にもつ TD-DFT インプットファイルを生成します。
+[`phe.out`](/example/ground_state/phe.out) は構造最適化計算の結果ファイルです。これをもとに、二面角ごとの安定構造を入力にもつ TD-DFT インプットファイルを生成します。
 
 ```
 $ perl extract.pl
@@ -114,15 +114,15 @@ This is the Gaussian output processor for TD-DFT calculations.
 >>
 ```
 
-`lactic_acid.out` を入力します。
+`phe.out` を入力します。
 
 計算したい励起状態の数（`nstates`）は任意の自然数を入力、汎関数・基底関数系は選択肢から選択します。ただし LanL2DZ は、ECP も同時に設定されます（`<functional>/genecp`、ECP は LanL2DZ）。
 
-すべての設問に答えると、`lactic_acid_tddft/` ディレクトリが出力されます。`lactic_acid.***.tddft.com` は、生成された TD-DFT 計算ファイルです。
+すべての設問に答えると、`phe_tddft/` ディレクトリが出力されます。`phe.***.tddft.com` は、生成された TD-DFT 計算ファイルです。
 
 **3. TD-DFT 計算結果の解析**
 
-[`lactic_acid_tddft_outs/`](/example/ground_state/lactic_acid_tddft_outs/) は二面角ごとの TD-DFT 計算の結果ファイル（`lactic_acid.***.tddft.out` が詰まったディレクトリです。
+[`phe_tddft_outs/`](/example/ground_state/phe_tddft_outs/) は二面角ごとの TD-DFT 計算の結果ファイル（`phe.***.tddft.out`）が詰まったディレクトリです。
 
 ```
 $ perl extract.pl
@@ -146,31 +146,86 @@ This is the Gaussian output processor for TD-DFT calculations.
 >>
 ```
 
-`lactic_acid_tddft_outs/` を入力します。
+`phe_tddft_outs/` を入力します。
 
 ```
 ✔ Enter the name of <txt> file [tot_ener.txt]
 >>
 ```
 
-[`lactic_acid_tot_ener.txt`](/example/ground_state/lactic_acid_tot_ener.txt) を入力します（GaussView 6 の Result -> Scan からポテンシャルエネルギーマップを表示し、右クリック -> Save Data からエクスポートしたものです）。
+[`phe_tot_ener.txt`](/example/ground_state/phe_tot_ener.txt) を入力します（GaussView 6 で `phe.out` を読み込み、Result -> Scan からポテンシャルエネルギーマップを表示し、右クリック -> Save Data からエクスポートしたものです）。
 
-読み込みに成功すると、[`lactic_acid_tddft_outs.plot.txt`](/example/ground_state/lactic_acid_tddft_outs.plot.txt) がエクスポートされます。
+読み込みに成功すると、[`phe_tddft_outs.plot.txt`](/example/ground_state/phe_tddft_outs.plot.txt) がエクスポートされます。
 
 **4. 可視化**
 
-`lactic_acid_tot_ener.txt` を用いて、ポテンシャルエネルギーマップを表示できます。
+`phe_tot_ener.txt` を用いて、ポテンシャルエネルギーマップを表示できます。
 
 ```bash
-python3 enerplot.py /path/to/lactic_acid_tot_ener.txt
+python3 enerplot.py /path/to/phe_tot_ener.txt
 ```
 
-また、`lactic_acid_tddft_outs.plot.txt` を用いて、旋光強度や *g* 値のプロットを表示できます。
+また、`phe_tddft_outs.plot.txt` を用いて、旋光強度や *g* 値のプロットを表示できます。
 
 ```bash
-python3 scanplot.py /path/to/lactic_acid_tddft_outs.plot.txt
+python3 scanplot.py /path/to/phe_tddft_outs.plot.txt
 ```
 
 ### 励起状態
 
 `example/excited_state/` ディレクトリに一連のファイルとサブディレクトリがあります。
+
+**1. TD-DFT による構造最適化計算**
+
+[`phe_ex.com`](/example/excited_state/phe_ex.com) は初期構造ファイルです。`opt=modredundant` オプションにより、ベンジル位の二面角を回転させながら構造最適化を繰り返します。また、`td` オプションに基づき、励起状態の構造最適化を行います。
+
+**2. TD-DFT 計算結果の解析**
+
+[`phe_ex.out`](/example/excited_state/phe_ex.out) は二面角ごとの TD-DFT 計算の結果が記載されたアウトプットファイルです。
+
+```
+$ perl extract.pl
+-------------------------------------------------------------------------------------
+This is the Gaussian output processor for TD-DFT calculations.
+(Press 'Ctrl + C' to exit)
+-------------------------------------------------------------------------------------
+
+✔ Select output format [1 to 4]
+1) Generate TD-DFT input from [opt|opt-scan] output.
+2) Extract Rotatory Strengths from [td-scan|td-opt-scan] output.
+3) Extract Coordinates from [opt|opt-scan] output.
+4) Display help.
+>>
+```
+
+`2` 番を選択します。
+
+```
+✔ Enter the name of [td-scan result <directory>|td-opt-scan result <out>]
+>>
+```
+
+`phe_ex.out` を入力します。
+
+```
+✔ Enter the name of <txt> file [tot_ener.txt]
+>>
+```
+
+[`phe_ex_tot_ener.txt`](/example/excited_state/phe_ex_tot_ener.txt) を入力します（GaussView 6 で `phe_ex.out` を読み込み、Result -> Scan からポテンシャルエネルギーマップを表示し、右クリック -> Save Data からエクスポートしたものです）。
+
+読み込みに成功すると、[`phe_ex_out.plot.txt`](/example/excited_state/phe_ex_out.plot.txt) がエクスポートされます。
+
+**4. 可視化**
+
+`phe_ex_tot_ener.txt` を用いて、ポテンシャルエネルギーマップを表示できます。
+
+```bash
+python3 enerplot.py /path/to/phe_ex_tot_ener.txt
+```
+
+また、`phe_ex_out.plot.txt` を用いて、旋光強度や *g* 値のプロットを表示できます。
+
+```bash
+python3 scanplot.py /path/to/phe_ex_out.plot.txt
+```
