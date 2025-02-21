@@ -75,3 +75,99 @@ python scanplot.py [-h|--help] [--state STATE] [--save] [--y1 {rot,osc,gfac,angl
 
 > [!warning]
 > SSH 接続しながらプロットを表示する場合には、X11 転送等で GUI が使用できる環境が必要となります。
+
+## 実行例
+
+乳酸（Lactic acid）による計算例を示します。
+
+### 基底状態
+
+`example/ground_state/` ディレクトリに一連のファイルとサブディレクトリがあります。
+
+**1. 構造最適化計算**
+
+[`lactic_acid.com`](/example/ground_state/lactic_acid.com) は初期構造ファイルです。`opt=modredundant` オプションにより、*メチル基-不斉中心炭素-カルボキシル基* を通る二面角を回転させながら構造最適化を繰り返します。
+
+**2. TD-DFT 計算ファイルの生成**
+
+[`lactic_acid.out`](/example/ground_state/lactic_acid.out) は構造最適化計算の結果ファイルです。これをもとに、二面角ごとの安定構造を入力にもつ TD-DFT インプットファイルを生成します。
+
+```
+$ extract
+-------------------------------------------------------------------------------------
+This is the Gaussian output processor for TD-DFT calculations.
+(Press 'Ctrl + C' to exit)
+-------------------------------------------------------------------------------------
+
+✔ Select output format [1 to 4]
+1) Generate TD-DFT input from [opt|opt-scan] output.
+2) Extract Rotatory Strengths from [td-scan|td-opt-scan] output.
+3) Extract Coordinates from [opt|opt-scan] output.
+4) Display help.
+>>
+```
+
+`1` 番を選択します。
+
+```
+✔ Enter the name of <out> file [opt|opt-scan]
+>>
+```
+
+`lactic_acid.out` を入力します。
+
+計算したい励起状態の数（`nstates`）は任意の自然数を入力、汎関数・基底関数系は選択肢から選択します。ただし LanL2DZ は、ECP も同時に設定されます（`<functional>/genecp`、ECP は LanL2DZ）。
+
+すべての設問に答えると、`lactic_acid_tddft/` ディレクトリが出力されます。`lactic_acid.***.tddft.com` は、生成された TD-DFT 計算ファイルです。
+
+**3. TD-DFT 計算結果の解析**
+
+[`lactic_acid_tddft_outs/`](/example/ground_state/lactic_acid_tddft_outs/) は二面角ごとの TD-DFT 計算の結果ファイル（`lactic_acid.***.tddft.out` が詰まったディレクトリです。
+
+```
+$ extract
+-------------------------------------------------------------------------------------
+This is the Gaussian output processor for TD-DFT calculations.
+(Press 'Ctrl + C' to exit)
+-------------------------------------------------------------------------------------
+
+✔ Select output format [1 to 4]
+1) Generate TD-DFT input from [opt|opt-scan] output.
+2) Extract Rotatory Strengths from [td-scan|td-opt-scan] output.
+3) Extract Coordinates from [opt|opt-scan] output.
+4) Display help.
+>>
+```
+
+`2` 番を選択します。
+
+```
+✔ Enter the name of [td-scan result <directory>|td-opt-scan result <out>]
+>>
+```
+
+`lactic_acid_tddft_outs/` を入力します。
+
+```
+✔ Enter the name of <txt> file [tot_ener.txt]
+>>
+```
+
+`lactic_acid_tot_ener.txt` を入力します（GaussView 6 の Result -> Scan からポテンシャルエネルギーマップを表示し、右クリック -> Save Data からエクスポートしたものです）。
+
+`lactic_acid_tddft_outs.plot.txt` がエクスポートされます。
+
+**4. 可視化**
+
+`lactic_acid_tot_ener.txt` を用いて、ポテンシャルエネルギーマップを表示できます。
+
+```bash
+python3 enerplot.py /path/to/lactic_acid_tot_ener.txt
+```
+
+また、`lactic_acid_tddft_outs.plot.txt` を用いて、旋光強度や *g* 値のプロットを表示できます。
+
+```bash
+python3 scanplot.py /path/to/lactic_acid_tddft_outs.plot.txt
+```
+
