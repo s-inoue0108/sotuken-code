@@ -8,11 +8,11 @@
   - Matplotlib 3.0.3
   - Pandas 0.25.3
 
-| 名称          | 説明                                                                                                     |
-| :------------ | :------------------------------------------------------------------------------------------------------- |
-| `extract.pl`  | Gaussian 16 のアウトプットファイル（`.out` または `.log`）を処理します。                                 |
-| `enerplot.py` | GaussView 6 からエクスポートした Relaxed Scan の結果ファイル（`.txt`）を読み込み、プロットを表示します。 |
-| `scanplot.py` | `extract.pl` によってエクスポートしたファイル（`.plot.txt`）を読み込み、プロットを表示します。           |
+| 名称                                  | 説明                                                                                                     |
+| :------------------------------------ | :------------------------------------------------------------------------------------------------------- |
+| [`extract.pl`](/scripts/extract.pl)   | Gaussian 16 のアウトプットファイル（`.out` または `.log`）を処理します。                                 |
+| [`enerplot.py`](/scripts/enerplot.py) | GaussView 6 からエクスポートした Relaxed Scan の結果ファイル（`.txt`）を読み込み、プロットを表示します。 |
+| [`scanplot.py`](/scripts/scanplot.py) | `extract.pl` によってエクスポートしたファイル（`.plot.txt`）を読み込み、プロットを表示します。           |
 
 ## 使用法
 
@@ -153,9 +153,9 @@ This is the Gaussian output processor for TD-DFT calculations.
 >>
 ```
 
-`lactic_acid_tot_ener.txt` を入力します（GaussView 6 の Result -> Scan からポテンシャルエネルギーマップを表示し、右クリック -> Save Data からエクスポートしたものです）。
+[`lactic_acid_tot_ener.txt`](/example/ground_state/lactic_acid_tot_ener.txt) を入力します（GaussView 6 の Result -> Scan からポテンシャルエネルギーマップを表示し、右クリック -> Save Data からエクスポートしたものです）。
 
-`lactic_acid_tddft_outs.plot.txt` がエクスポートされます。
+読み込みに成功すると、[`lactic_acid_tddft_outs.plot.txt`](/example/ground_state/lactic_acid_tddft_outs.plot.txt) がエクスポートされます。
 
 **4. 可視化**
 
