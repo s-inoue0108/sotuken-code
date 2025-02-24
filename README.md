@@ -214,7 +214,7 @@ This is the Gaussian output processor for TD-DFT calculations.
 
 [`phe_ex_tot_ener.txt`](/example/excited_state/phe_ex_tot_ener.txt) を入力します（GaussView 6 で `phe_ex.out` を読み込み、Result -> Scan からポテンシャルエネルギーマップを表示し、右クリック -> Save Data からエクスポートしたものです）。
 
-読み込みに成功すると、[`phe_ex_out.plot.txt`](/example/excited_state/phe_ex_out.plot.txt) がエクスポートされます。
+読み込みに成功すると、[`phe_ex.out.plot.txt`](/example/excited_state/phe_ex.out.plot.txt) がエクスポートされます。
 
 **4. 可視化**
 
@@ -224,8 +224,8 @@ This is the Gaussian output processor for TD-DFT calculations.
 python3 enerplot.py /path/to/phe_ex_tot_ener.txt
 ```
 
-また、`phe_ex_out.plot.txt` を用いて、旋光強度や *g* 値のプロットを表示できます。
+また、`phe_ex.out.plot.txt` を用いて、旋光強度や *g* 値のプロットを表示できます。
 
 ```bash
-python3 scanplot.py /path/to/phe_ex_out.plot.txt
+python3 scanplot.py /path/to/phe_ex.out.plot.txt
 ```
